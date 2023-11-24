@@ -1,8 +1,8 @@
 NAME = push_swap
 
-PUSH_SWAP = push_swap.c check_args.c
-
-HEADERS = push_swap.h
+PUSH_SWAP = push_swap.c 	\
+			check_args.c	\
+			utils.c
 
 SRCS = ${PUSH_SWAP}
 
@@ -12,7 +12,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 
 %.o: %.c Makefile push_swap.h constants.h
-	${CC} ${CFLAGS} -I ${HEADERS} -c $< -o $@
+	${CC} ${CFLAGS} -I ./ -c $< -o $@
 
 ${NAME}: ${OBJS}
 	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
