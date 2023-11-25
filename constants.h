@@ -26,6 +26,4 @@
 # define ERROR_DUPLICATED_NUMBER    "Error\nDuplicated Number In Argv\n"
 # define ERROR_MALLOC               "Error\nMalloc fails\n"
 
-
-
 #endif //CONSTANTS_H
