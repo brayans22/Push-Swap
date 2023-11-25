@@ -49,6 +49,7 @@ static int create_new_stack(t_node **stack, int *numbers, int total)
         {
             write(1, ERROR_MALLOC, 19);
             free_stack(head);
+            (*stack) = NULL;
             return (ERROR);
         }
         head = head->next;
