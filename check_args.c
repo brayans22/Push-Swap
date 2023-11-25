@@ -14,6 +14,7 @@ static int  *alloc_memory_numbers(int argc)
     return (values_int);
 }
 
+
 static int  is_duplicated_nb(int *values, int count, long nb)
 {
     int i;
@@ -21,7 +22,7 @@ static int  is_duplicated_nb(int *values, int count, long nb)
     i = -1;
     while (++i < count)
     {
-        if (values[i] != (int)nb)
+        if (values[i] == (int)nb)
             return (TRUE);
     }
     return (FALSE);
@@ -33,7 +34,7 @@ static int  is_valid_numbers(int argc, char **argv, int *values)
     int     j;
     long    nb;
 
-    if (argc < MIN_COUNT_ARGC)
+    if (argc <= MIN_COUNT_ARGC)
         return (STATUS_TOO_FEW_ARGUMENTS);
     i = 0;
     while (++i < argc)
@@ -65,9 +66,11 @@ int is_valid_input(int argc, char **argv)
     if (!values)
     {
         write(1, ERROR_MALLOC, 19);
+        free(values);
         return (ERROR);
     }
     status = is_valid_numbers(argc, argv, values);
+    free(values);
     if (status == TRUE)
         return (status);
     else if (status == STATUS_NOT_ARE_NUMBERS)
@@ -78,5 +81,7 @@ int is_valid_input(int argc, char **argv)
         write(1, ERROR_NUMBERS_NEGATIVE, 36);
     else if (status == STATUS_NUMBER_DUPLICATED)
         write(1, ERROR_DUPLICATED_NUMBER, 32);
+    else
+        write(1, ERROR_TO_FEW_ARGUMENTS, 24);
     return (ERROR);
 }
