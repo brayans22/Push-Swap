@@ -29,32 +29,32 @@ static t_node*  create_node(int content, t_node *next, t_node *before)
     return (node);
 }
 
-static int create_new_stack(t_node **stack, int *numbers, int total)
+static void create_new_stack(t_node **stack, int *numbers, int total)
 {
     int     i;
     t_node  *head;
-
+    
     i = 0;
+    (*stack) = NULL;
     head = create_node(numbers[i], NULL, NULL);
     if (!head)
-    {
         write(1, ERROR_MALLOC, 19);
-        return (ERROR);
-    }
-    (*stack) = head;
-    while (++i < total)
+    else
     {
-        head->next = create_node(numbers[i], NULL, head);
-        if (!head->next)
+        (*stack) = head;
+        while (++i < total && (*stack))
         {
-            write(1, ERROR_MALLOC, 19);
-            free_stack(head);
-            (*stack) = NULL;
-            return (ERROR);
+            head->next = create_node(numbers[i], NULL, head);
+            if (!head->next)
+            {
+                write(1, ERROR_MALLOC, 19);
+                free_stack(head);
+                (*stack) = NULL;
+            }
+            else
+                head = head->next;
         }
-        head = head->next;
     }
-    return (TRUE);
 }
 
 int main(int argc, char **argv)
@@ -63,9 +63,7 @@ int main(int argc, char **argv)
     //t_node  *stack_b;
     int     *numbers;
 
-    stack_a = NULL;
     //stack_b = NULL;
-
     numbers = get_numbers_from_argv(argc, argv);
     if (!numbers)
         return (ERROR);
@@ -86,6 +84,5 @@ int main(int argc, char **argv)
         sa_swap_a(&stack_a, argc - 1);
     }
     */
-    
     return 0;
 }
