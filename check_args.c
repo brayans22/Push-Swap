@@ -41,13 +41,12 @@ static int  is_valid_numbers(int argc, char **argv, int *values)
         j = -1;
         while (argv[i][++j])
         {
-            if (!((argv[i][j] >= '0' && argv[i][j] <= '9') || argv[i][j] == '-'))
+            if (((!(argv[i][j] >= '0' && argv[i][j] <= '9')) && \
+                ((j != 0) || (j == 0 && (argv[i][j] != '-')))))
                 return (STATUS_NOT_ARE_NUMBERS);
         }
         nb = ft_atol(argv[i]);
-        if (nb < 0)
-            return (STATUS_NUMBER_NEGATIVE);
-        else if (nb > MAX_INT)
+        if (nb < MIN_INT || nb > MAX_INT)
             return (STATUS_NUMBER_OUT_OF_RANGE);
         else if (is_duplicated_nb(values, i, nb))
             return (STATUS_NUMBER_DUPLICATED);
@@ -67,8 +66,6 @@ static int is_valid_input(int argc, char **argv, int *numbers)
         write(1, ERROR_NOT_ARE_NUMBERS, 35);
     else if (status == STATUS_NUMBER_OUT_OF_RANGE)
         write(1, ERROR_INT_OVERFLOW, 41);
-    else if (status == STATUS_NUMBER_NEGATIVE)
-        write(1, ERROR_NUMBERS_NEGATIVE, 36);
     else if (status == STATUS_NUMBER_DUPLICATED)
         write(1, ERROR_DUPLICATED_NUMBER, 32);
     else
@@ -82,15 +79,11 @@ int *get_numbers_from_argv(int argc, char **argv)
 
     numbers = alloc_memory_numbers(argc);
     if (!numbers)
-    {
         write(1, ERROR_MALLOC, 19);
-        free(numbers);
-        return (NULL);
-    }
-    if (!is_valid_input(argc, argv, numbers))
+    else if (!is_valid_input(argc, argv, numbers))
     {
         free(numbers);
-        return (NULL);
+        numbers = NULL;
     }
     return (numbers);
 }
