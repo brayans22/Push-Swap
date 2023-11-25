@@ -56,20 +56,11 @@ static int  is_valid_numbers(int argc, char **argv, int *values)
     return (TRUE);
 }
 
-int is_valid_input(int argc, char **argv)
+static int is_valid_input(int argc, char **argv, int *numbers)
 {
     int status;
-    int *values;
 
-    values = alloc_memory_numbers(argc);
-    if (!values)
-    {
-        write(1, ERROR_MALLOC, 19);
-        free(values);
-        return (ERROR);
-    }
-    status = is_valid_numbers(argc, argv, values);
-    free(values);
+    status = is_valid_numbers(argc, argv, numbers);
     if (status == TRUE)
         return (status);
     else if (status == STATUS_NOT_ARE_NUMBERS)
@@ -82,5 +73,24 @@ int is_valid_input(int argc, char **argv)
         write(1, ERROR_DUPLICATED_NUMBER, 32);
     else
         write(1, ERROR_TO_FEW_ARGUMENTS, 24);
-    return (ERROR);
+    return (FALSE);
+}
+
+int *get_numbers_from_argv(int argc, char **argv)
+{
+    int *numbers;
+
+    numbers = alloc_memory_numbers(argc);
+    if (!numbers)
+    {
+        write(1, ERROR_MALLOC, 19);
+        free(numbers);
+        return (NULL);
+    }
+    if (!is_valid_input(argc, argv, numbers))
+    {
+        free(numbers);
+        return (NULL);
+    }
+    return (numbers);
 }

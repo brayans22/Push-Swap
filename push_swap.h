@@ -16,8 +16,7 @@ typedef struct s_stack
 }   t_stack;
 
 /* Prototypes */
-int     is_valid_input(int argc, char **argv);
 long    ft_atol(const char *str);
-
+int     *get_numbers_from_argv(int argc, char **argv);
 
 #endif //PUSH_SWAP_H
