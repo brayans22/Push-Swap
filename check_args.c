@@ -14,7 +14,6 @@ static int  *alloc_memory_numbers(int argc)
     return (values_int);
 }
 
-
 static int  is_duplicated_nb(int *values, int count, long nb)
 {
     int i;
