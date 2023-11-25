@@ -29,7 +29,7 @@ static t_node*  create_node(int content, t_node *next, t_node *before)
     return (node);
 }
 
-static int fill_stack(t_node **stack, int *numbers, int total)
+static int create_new_stack(t_node **stack, int *numbers, int total)
 {
     int     i;
     t_node  *head;
@@ -39,7 +39,6 @@ static int fill_stack(t_node **stack, int *numbers, int total)
     if (!head)
     {
         write(1, ERROR_MALLOC, 19);
-        free_stack(head);
         return (ERROR);
     }
     (*stack) = head;
@@ -69,7 +68,7 @@ int main(int argc, char **argv)
     numbers = get_numbers_from_argv(argc, argv);
     if (!numbers)
         return (ERROR);
-    fill_stack(&stack_a, numbers, argc - 1);
+    create_new_stack(&stack_a, numbers, argc - 1);
     if (!stack_a)
         return (ERROR);
     for (int i = 0; stack_a != NULL; i++)
