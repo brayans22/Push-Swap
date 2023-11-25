@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../headers/push_swap.h"
 
 static int  *alloc_memory_numbers(int argc)
 {
@@ -50,7 +50,7 @@ static int  is_valid_numbers(int argc, char **argv, int *values)
             return (STATUS_NUMBER_OUT_OF_RANGE);
         else if (is_duplicated_nb(values, i, nb))
             return (STATUS_NUMBER_DUPLICATED);
-        values[i] = nb;
+        values[i - 1] = nb;
     }
     return (TRUE);
 }
@@ -77,7 +77,7 @@ int *get_numbers_from_argv(int argc, char **argv)
 {
     int *numbers;
 
-    numbers = alloc_memory_numbers(argc);
+    numbers = alloc_memory_numbers(argc - 1);
     if (!numbers)
         write(1, ERROR_MALLOC, 19);
     else if (!is_valid_input(argc, argv, numbers))

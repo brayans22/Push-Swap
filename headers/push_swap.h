@@ -8,12 +8,12 @@
 # include <unistd.h>
 
 /* Structs */
-typedef struct s_stack
+typedef struct s_node
 {
-    void    *content;
-    struct s_stack  *next;
-    struct s_stack  *before;
-}   t_stack;
+    int             content;
+    struct s_node   *next;
+    struct s_node   *before;
+}   t_node;
 
 /* Prototypes */
 long    ft_atol(const char *str);

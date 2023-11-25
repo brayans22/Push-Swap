@@ -1,30 +1,34 @@
-NAME = push_swap
+NAME 		= 	push_swap
 
-PUSH_SWAP = push_swap.c 	\
-			check_args.c	\
-			utils.c
+PUSH_SWAP 	= 	src/push_swap.c 	\
+				src/check_args.c	\
+				src/utils.c
 
-SRCS = ${PUSH_SWAP}
+HEADERS 	= 	headers/constants.h \
+		  		headers/push_swap.h
 
-OBJS = ${SRCS:.c=.o}
+SRCS 		= ${PUSH_SWAP}
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+OBJS 		= ${SRCS:.c=.o}
 
-%.o: %.c Makefile push_swap.h constants.h
-	${CC} ${CFLAGS} -I ./ -c $< -o $@
+CC 			= gcc
+CFLAGS 		= -Wall -Werror -Wextra -fsanitize=address -g
 
-${NAME}: ${OBJS}
-	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 
-all: ${NAME}
+%.o: 		%.c Makefile push_swap.h constants.h
+			${CC} ${CFLAGS} -I ${HEADERS} -c $< -o $@
+
+${NAME}: 	${OBJS}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS}
+
+all: 		${NAME}
 
 clean:
-	rm -f ${OBJS}
+			rm -f ${OBJS}
 
-fclean: clean
-	rm -f ${NAME}
+fclean: 	clean
+			rm -f ${NAME}
 
-re: fclean all
+re: 		fclean all
 
-.PHONY: all clean fclean re
+.PHONY: 	all clean fclean re
