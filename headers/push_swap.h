@@ -19,7 +19,14 @@
 # define MAX_DIGIT_CHAR                 '9'
 # define MAX_INT                        2147483647
 # define MIN_INT                        -2147483648
+# define SA                         "sa\n"
+# define PA                         "pa\n"
+# define PB                         "pb\n"
+# define RA                         "ra\n"
 # define ERROR_NOT_ARE_NUMBERS      "Error\nThe argvs have to be numbers\n"
+# define ERROR_SWAPPING         "Error\nSwapping in the stack\n"
+# define ERROR_PUSHING          "Error\nPushing in the stack\n"
+# define ERROR_ROTATING         "Error\nRotating in the stack\n"
 # define ERROR_INT_OVERFLOW     "Error\nArgv numbers out of integers range\n"
 # define ERROR_TO_FEW_ARGUMENTS     "Error\nToo Few Arguments\n"
 # define ERROR_DUPLICATED_NUMBER    "Error\nDuplicated Number In Argv\n"
@@ -42,5 +49,6 @@ int	    ft_lstsize(t_list *lst);
 t_list	*ft_lstnew(int content);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+int     radix_sort(t_list **stack_a, t_list **stack_b);
 
 #endif //PUSH_SWAP_H

@@ -33,8 +33,6 @@ static int  is_valid_numbers(int argc, char **argv, int *values)
     int     j;
     long    nb;
 
-    if (argc <= MIN_COUNT_ARGC)
-        return (STATUS_TOO_FEW_ARGUMENTS);
     i = 0;
     while (++i < argc)
     {

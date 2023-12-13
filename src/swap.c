@@ -1,25 +1,14 @@
 #include "../headers/push_swap.h"
 
-void sa_swap_a(t_node **stack, int total)
-{
-    t_node  **head;
-    t_node  *aux; 
 
-    head = stack;
-    if (!(*stack) || !stack)
-        return ;
-    if (total == 2 && (*stack)->content >= (*stack)->next->content)
+
+int	sa(t_list **stack_a)
+{
+	if (make_swap(stack_a) == ERROR)
     {
-        aux = (*stack); 
-        (*stack) = (*stack)->next;
-        aux -> next = NULL;
-        aux -> before = (*stack);
-        (*stack)->next = aux;
-        (*stack)->before = NULL;
+        write(1, ERROR_SWAPPING, 28);
+        return (ERROR);
     }
-    else
-    {
-        //SI TENGO MAS DE 2;
-    }
-    stack = head;
+	write(1, SA, 3);
+	return (0);
 }
