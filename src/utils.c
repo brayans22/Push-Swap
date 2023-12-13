@@ -33,12 +33,10 @@ void	free_stack(t_list **stack)
 	while (head)
 	{
 		tmp = head;
-        free(tmp);
 		head = head->next;
+        free(tmp);
 	}
 	free(stack);
-    *stack = NULL;
-    stack = NULL;
 }
 
 int	is_sorted(t_list **stack)

@@ -53,5 +53,7 @@ int     radix_sort(t_list **stack_a, t_list **stack_b);
 int     swap(t_list **stack, char *message);
 int	    push(t_list **stack_dest, t_list **stack_origin, char *message);
 int     rotate(t_list **stack, char *message);
+int     select_sort(t_list **stack_a, t_list **stack_b, int size);
+void	free_stack(t_list **stack);
 
 #endif //PUSH_SWAP_H

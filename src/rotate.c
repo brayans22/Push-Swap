@@ -10,7 +10,6 @@ static void make_rotate(t_list **stack)
 	*stack = head->next;
 	head->next = NULL;
 	tail->next = head;
-	return (0);
 }
 
 int rotate(t_list **stack, char *message)
@@ -21,7 +20,9 @@ int rotate(t_list **stack, char *message)
         return (ERROR);
     }
     make_rotate(stack);
-    if (write(1, message, 3) == ERROR)
+    if ((write(1, message, 3) == ERROR))
+    {
         return (ERROR);
+    }
     return (0);
 }

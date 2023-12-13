@@ -32,7 +32,9 @@ int	push(t_list **stack_dest, t_list **stack_origin, char *message)
         return (ERROR);
     }
     make_push(stack_dest, stack_origin);
-    if (write(1, message, 3) == ERROR)
+	if ((write(1, message, 3) == ERROR))
+    {
         return (ERROR);
+    }  
 	return (0);
 }

@@ -10,7 +10,7 @@ int	radix_sort(t_list **stack_a, t_list **stack_b)
 
 	i = 0;
 	status = 0;
-	size = ft_lstsize(stack_a);
+	size = ft_lstsize(*stack_a);
 	while (!is_sorted(stack_a) && status != ERROR)
 	{
 		j = 0;

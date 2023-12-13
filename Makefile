@@ -6,10 +6,12 @@ PUSH_SWAP 	= 	src/push_swap.c 	\
 				src/rotate.c        \
 				src/push.c          \
 				src/swap.c          \
+				src/select_sort.c   \
+				src/radix_sort.c    \
 				src/lst_list.c      \
 				src/utils.c
 
-HEADERS 	= 	headers/push_swap.h \
+HEADERS 	= 	headers/push_swap.h 
 
 SRCS 		= ${PUSH_SWAP}
 
