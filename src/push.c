@@ -1,27 +1,38 @@
 #include "../headers/push_swap.h"
 
-int main(int argc, char **argv)
+static void    make_push(t_list **stack_dest, t_list **stack_origin)
 {
-    t_list  **stack_a;
-    t_list  **stack_b;
-    int     *numbers;
-    
-    if (argc <= 2)
-        return 0;
-    stack_a = (t_list**)malloc(sizeof(t_list));
-    if (!stack_a)
-        return (NULL);
-    *stack_a = NULL;
-    stack_b = (t_list**)malloc(sizeof(t_list));
-    if (!stack_b)
-        return (free_stack(stack_a), ERROR);
-    *stack_b = NULL;
-    numbers = get_numbers_from_argv(argc, argv);
-    if (!numbers)
-        return (free_stack(stack_a), free_stack(stack_b), ERROR);
-    if (create_new_stack(stack_a, numbers, argc - 1) == ERROR);
-        return (free(numbers), free_stack(stack_a), free_stack(stack_b));
-    if (is_sorted(stack_a))
-        return (free(numbers), free_stack(stack_a), free_stack(stack_b), 0);
-    return (radix_sort(stack_a, stack_b));
+    t_list	*head_dest;
+	t_list	*head_origin;
+	t_list	*aux;
+	
+	head_dest = *stack_dest;
+	head_origin = *stack_origin;
+	aux = head_origin;
+	head_origin = head_origin->next;
+	*stack_origin = head_origin;
+	if (head_dest)
+	{
+		aux->next = head_dest;
+		*stack_dest = aux;
+	}
+	else
+	{
+        head_dest = aux;
+		head_dest->next = NULL;
+		*stack_dest = head_dest;
+	}
+}
+
+int	push(t_list **stack_dest, t_list **stack_origin, char *message)
+{
+	if (ft_lstsize(*stack_origin) == 0)
+    {
+	    write(1, ERROR_PUSHING, 27);
+        return (ERROR);
+    }
+    make_push(stack_dest, stack_origin);
+    if (write(1, message, 3) == ERROR)
+        return (ERROR);
+	return (0);
 }

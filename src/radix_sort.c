@@ -18,12 +18,12 @@ int	radix_sort(t_list **stack_a, t_list **stack_b)
 		{
 			head_a = *stack_a;
 			if (((head_a->index >> i) & 1) == 1)
-				status = ra(stack_a);
+				status = rotate(stack_a, RA);
 			else
-				status = pb(stack_a, stack_b);
+				status = push(stack_b, stack_a, PB);
 		}
 		while (ft_lstsize(*stack_b) != 0 && status != ERROR)
-			status = pa(stack_a, stack_b);
+			status = push(stack_a, stack_b, PA);
 		i++;
 	}
 	return (status);

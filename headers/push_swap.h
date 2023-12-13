@@ -50,5 +50,8 @@ t_list	*ft_lstnew(int content);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int     radix_sort(t_list **stack_a, t_list **stack_b);
+int     swap(t_list **stack, char *message);
+int	    push(t_list **stack_dest, t_list **stack_origin, char *message);
+int     rotate(t_list **stack, char *message);
 
 #endif //PUSH_SWAP_H

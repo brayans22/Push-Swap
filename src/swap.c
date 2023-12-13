@@ -1,14 +1,33 @@
 #include "../headers/push_swap.h"
 
-
-
-int	sa(t_list **stack_a)
+static int make_swap(t_list **stack)
 {
-	if (make_swap(stack_a) == ERROR)
+    t_list *head;
+    t_list *next;
+    int aux_cont;
+    int aux_index;
+
+    head = *stack;
+    if (!head && !head->next)
+        return (ERROR);
+    next = head->next;
+    aux_cont = head->content;
+    aux_index = head->index;
+    head->content = next->content;
+    head->index = next->index;
+    next->content = aux_cont;
+    next->index = aux_index;
+    return (0);
+}
+
+int swap(t_list **stack, char *message)
+{
+    if ((ft_lstsize(*stack) < 2) || make_swap(stack) == ERROR)
     {
         write(1, ERROR_SWAPPING, 28);
         return (ERROR);
     }
-	write(1, SA, 3);
-	return (0);
+    if (write(1, message, 3) == ERROR)
+        return (ERROR);
+    return (0);
 }
