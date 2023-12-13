@@ -2,10 +2,14 @@ NAME 		= 	push_swap
 
 PUSH_SWAP 	= 	src/push_swap.c 	\
 				src/check_args.c	\
+				src/stack.c         \
+				src/rotate.c        \
+				src/push.c          \
+				src/swap.c          \
+				src/lst_list.c      \
 				src/utils.c
 
-HEADERS 	= 	headers/constants.h \
-		  		headers/push_swap.h
+HEADERS 	= 	headers/push_swap.h \
 
 SRCS 		= ${PUSH_SWAP}
 
@@ -14,8 +18,7 @@ OBJS 		= ${SRCS:.c=.o}
 CC 			= gcc
 CFLAGS 		= -Wall -Werror -Wextra -fsanitize=address -g
 
-
-%.o: 		%.c Makefile push_swap.h constants.h
+%.o: 		%.c Makefile push_swap.h
 			${CC} ${CFLAGS} -I ${HEADERS} -c $< -o $@
 
 ${NAME}: 	${OBJS}
