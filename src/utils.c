@@ -23,3 +23,34 @@ long    ft_atol(const char *str)
 	}
 	return (nb * sign);
 }
+
+void	free_stack(t_list **stack)
+{
+	t_list	*head;
+	t_list	*tmp;
+
+	head = *stack;
+	while (head)
+	{
+		tmp = head;
+        free(tmp);
+		head = head->next;
+	}
+	free(stack);
+    *stack = NULL;
+    stack = NULL;
+}
+
+int	is_sorted(t_list **stack)
+{
+	t_list	*head;
+
+	head = *stack;
+	while (head && head->next)
+	{
+		if (head->content > head->next->content)
+			return (0);
+		head = head->next;
+	}
+	return (1);
+}

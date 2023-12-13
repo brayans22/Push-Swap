@@ -1,23 +1,11 @@
 #include "../headers/push_swap.h"
 
-void free_stack(t_node *stack) 
-{
-    t_node *current;
-    t_node *next;
 
-    current = stack;
-    while (current != NULL) 
-    {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-}
 
-static t_node*  create_node(int content, t_node *next, t_node *before)
+static t_list*  create_node(int content, t_list *next, t_list *before)
 {
-    t_node *node;
-    node = (t_node *)malloc(sizeof(t_node));
+    t_list *node;
+    node = (t_list *)malloc(sizeof(t_list));
     if (!node)
     {
         write(1, ERROR_MALLOC, 19);
@@ -29,10 +17,10 @@ static t_node*  create_node(int content, t_node *next, t_node *before)
     return (node);
 }
 
-static void create_new_stack(t_node **stack, int *numbers, int total)
+static void create_new_stack(t_list **stack, int *numbers, int total)
 {
     int     i;
-    t_node  *head;
+    t_list  *head;
     
     i = 0;
     (*stack) = NULL;
@@ -59,8 +47,8 @@ static void create_new_stack(t_node **stack, int *numbers, int total)
 
 int main(int argc, char **argv)
 {
-    t_node  *stack_a;
-    //t_node  *stack_b;
+    t_list  *stack_a;
+    t_list  *stack_b;
     int     *numbers;
 
     //stack_b = NULL;
