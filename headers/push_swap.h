@@ -9,7 +9,6 @@
 /* Constants */
 # define STATUS_NOT_ARE_NUMBERS         -3
 # define STATUS_NUMBER_OUT_OF_RANGE     -4
-# define STATUS_TOO_FEW_ARGUMENTS       -6
 # define STATUS_NUMBER_DUPLICATED       -7
 # define ERROR                          -1
 # define TRUE                           1
@@ -28,9 +27,7 @@
 # define ERROR_PUSHING          "Error\nPushing in the stack\n"
 # define ERROR_ROTATING         "Error\nRotating in the stack\n"
 # define ERROR_INT_OVERFLOW     "Error\nArgv numbers out of integers range\n"
-# define ERROR_TO_FEW_ARGUMENTS     "Error\nToo Few Arguments\n"
 # define ERROR_DUPLICATED_NUMBER    "Error\nDuplicated Number In Argv\n"
-# define ERROR_MALLOC               "Error\nMalloc fails\n"
 
 /* Structs */
 typedef struct s_list
@@ -55,5 +52,6 @@ int	    push(t_list **stack_dest, t_list **stack_origin, char *message);
 int     rotate(t_list **stack, char *message);
 int     select_sort(t_list **stack_a, t_list **stack_b, int size);
 void	free_stack(t_list **stack);
+int     is_valid_input(int argc, char **argv, int *numbers);
 
 #endif //PUSH_SWAP_H

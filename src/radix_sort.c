@@ -3,14 +3,14 @@
 int	radix_sort(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*head_a;
-	int		i;
 	int		status;
+	int		i;
 	int		j;
 	int		size;
 
 	i = 0;
-	status = 0;
-	size = ft_lstsize(*stack_a);
+	head_a = *stack_a;
+	size = ft_lstsize(head_a);
 	while (!is_sorted(stack_a) && status != ERROR)
 	{
 		j = 0;

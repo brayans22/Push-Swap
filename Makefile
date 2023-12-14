@@ -9,6 +9,7 @@ PUSH_SWAP 	= 	src/push_swap.c 	\
 				src/select_sort.c   \
 				src/radix_sort.c    \
 				src/lst_list.c      \
+				src/validator.c     \
 				src/utils.c
 
 HEADERS 	= 	headers/push_swap.h 
@@ -20,7 +21,7 @@ OBJS 		= ${SRCS:.c=.o}
 CC 			= gcc
 CFLAGS 		= -Wall -Werror -Wextra -fsanitize=address -g
 
-%.o: 		%.c Makefile push_swap.h
+%.o:%.c 	Makefile push_swap.h
 			${CC} ${CFLAGS} -I ${HEADERS} -c $< -o $@
 
 ${NAME}: 	${OBJS}
