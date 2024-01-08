@@ -24,7 +24,7 @@ static t_list	*get_next_min(t_list **stack)
 	return (min);
 }
 
-void	index_stack(t_list **stack)
+static void	index_stack(t_list **stack)
 {
 	t_list	*head;
 	int		index;
@@ -50,8 +50,8 @@ int     create_new_stack(t_list **stack_a, int *numbers, int total)
 		content = numbers[i];
 		new = ft_lstnew(content);
 		new->index = ERROR;
-        if (!new)
-            return (free_stack(stack_a), ERROR);
+	        if (!new)
+            		return (free_stack(stack_a), free(numbers), ERROR);
 		ft_lstadd_back(stack_a, new);
 	}
 	index_stack(stack_a);
