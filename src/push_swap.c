@@ -16,11 +16,11 @@ int main(int argc, char **argv)
     *stack_b = NULL;
     numbers = get_numbers_from_argv(argc, argv);
     if (!numbers)
-        return (free_stack(stack_a), free_stack(stack_b), 0);
+        return (free_stack(stack_a), free_stack(stack_b), free(numbers), ERROR);
     else if (create_new_stack(stack_a, numbers, argc - 1) == ERROR)
-        return (free_stack(stack_a), free_stack(stack_b), 0);
+        return (free_stack(stack_a), free_stack(stack_b), free(numbers), ERROR);
     else if (is_sorted(stack_a))
-        return (free_stack(stack_a), free_stack(stack_b), 0);
+        return (free_stack(stack_a), free_stack(stack_b), free(numbers), 0);
     free(numbers);
     select_sort(stack_a, stack_b, argc - 1);
 }
